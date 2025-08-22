@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal App - Mundo Ativo</title>
+    <meta name="description" content="Sistema de gestão para personal trainers - Mundo Ativo">
+    <meta property="og:title" content="Personal App - Mundo Ativo">
+    <meta property="og:description" content="Sistema completo de gestão para personal trainers">
+    <meta property="og:type" content="website">
+    
+    <!-- JSON-LD para SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Mundo Ativo Personal App",
+        "description": "Sistema de gestão para personal trainers",
+        "url": "https://mundoativo.com/personal-app"
+    }
+    </script>
+    
+    <link rel="icon" type="image/jpeg" href="Logo - MA 05.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <!-- Sprite de ícones SVG -->
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Dashboard -->
+            <symbol id="icon-dashboard" viewBox="0 0 24 24">
+                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+            </symbol>
+            <!-- Usuários -->
+            <symbol id="icon-users" viewBox="0 0 24 24">
+                <path d="M16 7c0-2.21-1.79-4-4-4S8 4.79 8 7s1.79 4 4 4 4-1.79 4-4zm-4 6c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/>
+            </symbol>
+            <!-- Exercícios -->
+            <symbol id="icon-exercise" viewBox="0 0 24 24">
+                <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
+            </symbol>
+            <!-- Treinos -->
+            <symbol id="icon-workout" viewBox="0 0 24 24">
+                <path d="M9 12c0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3-3 1.34-3 3zm3-8c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+            </symbol>
+            <!-- Login -->
+            <symbol id="icon-login" viewBox="0 0 24 24">
+                <path d="M11 7L9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5-5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8v12z"/>
+            </symbol>
+            <!-- Logout -->
+            <symbol id="icon-logout" viewBox="0 0 24 24">
+                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.59L17 17l5-5-5-5zm-1-5H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12v-2H4V4h12V2z"/>
+            </symbol>
+            <!-- Menu -->
+            <symbol id="icon-menu" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </symbol>
+            <!-- Fechar -->
+            <symbol id="icon-close" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </symbol>
+            <!-- Upload -->
+            <symbol id="icon-upload" viewBox="0 0 24 24">
+                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+            </symbol>
+            <!-- Editar -->
+            <symbol id="icon-edit" viewBox="0 0 24 24">
+                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+            </symbol>
+            <!-- Deletar -->
+            <symbol id="icon-delete" viewBox="0 0 24 24">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+            </symbol>
+            <!-- Adicionar -->
+            <symbol id="icon-add" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </symbol>
+            <!-- Configurações -->
+            <symbol id="icon-settings" viewBox="0 0 24 24">
+                <path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/>
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <img src="../Logo - MA 05.jpeg" alt="Mundo Ativo" class="logo">
+            </div>
+            
+            <nav class="header-nav" id="nav">
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#recursos" class="nav-link">Recursos</a>
+                <a href="#como-funciona" class="nav-link">Como Funciona</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+            
+            <div class="header-right">
+                <a href="../index.html" class="btn-home">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor"/>
+                    </svg>
+                    <span>Início</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+   
+
+    <!-- Main Content: Static Landing Page -->
+    <main id="inicio" class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-particles"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="floating-icons">
+                        <div class="floating-icon" style="top: 20%; left: 10%;">💪</div>
+                        <div class="floating-icon" style="top: 30%; right: 15%;">🎯</div>
+                        <div class="floating-icon" style="bottom: 30%; left: 20%;">📊</div>
+                        <div class="floating-icon" style="bottom: 20%; right: 10%;">🏆</div>
+                    </div>
+                    <h1 class="hero-title">Transforme seu Personal Training com <span class="gradient-text">Inteligência Artificial</span></h1>
+                    <p class="hero-subtitle">A câmera capta sua execução, a IA identifica pontos-chave do corpo e fornece correções imediatas, enquanto o educador físico personaliza e acompanha seu treino.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">75%</div>
+                            <div class="stat-label">Redução de Lesões</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3x</div>
+                            <div class="stat-label">Mais Eficiência</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Monitoramento IA</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre -->
+        <section id="sobre" class="container section">
+            <div class="grid grid-2">
+                <div class="card">
+                    <h2 class="section-title mb-2">Sobre o projeto</h2>
+                    <p class="mb-3" style="color: var(--muted);">
+                        O Mundo Ativo Personal é uma solução empresarial desenvolvida para maximizar a eficiência e os resultados dos personal trainers. Nossa plataforma integra gestão de treinos, relacionamento com clientes e automação operacional em um ecossistema único. Desenvolvida no Parque de Inovação Tecnológica de São José dos Campos, nossa solução é validada por profissionais do mercado.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Biblioteca de exercícios com vídeo e instruções</li>
+                        <li>Planilhas inteligentes e progressões por período</li>
+                        <li>Agenda integrada e lembretes aos alunos</li>
+                        <li>Cobranças automatizadas e relatórios financeiros</li>
+                    </ul>
+                    <div class="chip-row mt-3">
+                        <span class="chip">PIT-SJC • Nexus Growth Digital</span>
+                        <span class="chip">Baseado em evidências</span>
+                        <span class="chip">Privacidade (LGPD) — roadmap</span>
+                    </div>
+                </div>
+                <div class="card enhanced-feature-card">
+                    <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="feature-content mt-3">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg class="icon"><use href="#icon-workout"></use></svg>
+                                </div>
+                                <div class="feature-details">
+                                    <h4>Treinos</h4>
+                                    <p>Sistema completo de prescrição e acompanhamento de exercícios com biblioteca científica</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg class="icon"><use href="#icon-users"></use></svg>
+                                </div>
+                                <div class="feature-details">
+                                    <h4>Alunos</h4>
+                                    <p>Gestão completa do relacionamento, histórico e evolução de cada cliente</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <svg class="icon"><use href="#icon-dashboard"></use></svg>
+                                </div>
+                                <div class="feature-details">
+                                    <h4>Relatórios</h4>
+                                    <p>Analytics avançado com KPIs, métricas de performance e insights de negócio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vantagens -->
+        <section id="vantagens" class="container section">
+            <h2 class="section-title mb-1">Vantagens Competitivas</h2>
+            <p class="mb-3" style="color: var(--muted);">Tecnologia avançada para profissionais que buscam excelência operacional e resultados mensuráveis.</p>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-dashboard"></use></svg></div>
+                    <h4 class="mb-1">Gestão Centralizada</h4>
+                    <p style="color: var(--muted);">Dashboard único para controle total: clientes, treinos, financeiro e agenda integrados.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-add"></use></svg></div>
+                    <h4 class="mb-1">Automação Financeira</h4>
+                    <p style="color: var(--muted);">Cobrança recorrente, controle de inadimplência e relatórios financeiros automatizados.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-users"></use></svg></div>
+                    <h4 class="mb-1">CRM Integrado</h4>
+                    <p style="color: var(--muted);">Comunicação profissional, histórico de interações e gestão de relacionamento.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-workout"></use></svg></div>
+                    <h4 class="mb-1">Metodologia Científica</h4>
+                    <p style="color: var(--muted);">Biblioteca de exercícios com fundamentação científica, progressões validadas e prescrições precisas.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-settings"></use></svg></div>
+                    <h4 class="mb-1">Business Intelligence</h4>
+                    <p style="color: var(--muted);">Analytics avançado: KPIs de performance, retenção de clientes e ROI por serviço.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-dashboard"></use></svg></div>
+                    <h4 class="mb-1">Eficiência Operacional</h4>
+                    <p style="color: var(--muted);">Redução de 70% em tarefas administrativas, maximizando o tempo de atendimento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos -->
+        <section id="recursos" class="container section">
+            <h2 class="section-title mb-3">Recursos principais</h2>
+            <div class="grid grid-3">
+                <div class="card premium-feature">
+                    <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="premium-badge">
+                        <span>Pro</span>
+                    </div>
+                    <h3 class="mt-3 mb-1">Sistema de Treinos</h3>
+                    <ul class="feature-list small">
+                        <li><span class="feature-highlight">🏋️</span> Biblioteca científica com 500+ exercícios</li>
+                        <li><span class="feature-highlight">🤖</span> IA para análise biomecânica e correção de postura</li>
+                        <li><span class="feature-highlight">📹</span> Visão computacional para feedback em tempo real</li>
+                    </ul>
+                </div>
+                <div class="card premium-feature">
+                    <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2039&q=80');"></div>
+                    <div class="premium-badge smart-badge">
+                        <span>Smart</span>
+                    </div>
+                    <h3 class="mt-3 mb-1">Gestão de Agenda</h3>
+                    <ul class="feature-list small">
+                        <li><span class="feature-highlight">📅</span> Sincronização com calendários externos</li>
+                        <li><span class="feature-highlight">✅</span> Check-in automático e controle de presença</li>
+                        <li><span class="feature-highlight">🔔</span> Lembretes inteligentes e reavaliações</li>
+                    </ul>
+                </div>
+                <div class="card premium-feature">
+                    <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80');"></div>
+                    <div class="premium-badge">
+                        <span>Finance</span>
+                    </div>
+                    <h3 class="mt-3 mb-1">Módulo Financeiro</h3>
+                    <ul class="feature-list small">
+                        <li><span class="feature-highlight">💳</span> Cobrança automatizada e recorrente</li>
+                        <li><span class="feature-highlight">📊</span> Dashboard financeiro em tempo real</li>
+                        <li><span class="feature-highlight">⚠️</span> Gestão de inadimplência e cobrança</li>
+                    </ul>
+                </div>
+                <div class="card premium-feature">
+                    <div class="card-media" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80');"></div>
+                    <div class="premium-badge">
+                        <span>Analytics</span>
+                    </div>
+                    <h3 class="mt-3 mb-1">Analytics do Cliente</h3>
+                    <ul class="feature-list small">
+                        <li><span class="feature-highlight">📊</span> Análise de performance com IA avançada</li>
+                        <li><span class="feature-highlight">⚠️</span> Prevenção de lesões com precisão de 75%</li>
+                        <li><span class="feature-highlight">🎯</span> Detecção de padrões de risco em tempo real</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Funciona -->
+        <section id="como-funciona" class="container section">
+            <h2 class="section-title mb-3">Processo de Implementação</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-add"></use></svg></div>
+                    <h4 class="mb-1">1) Configure</h4>
+                    <p style="color: var(--muted);">Onboarding guiado: cadastro de clientes, definição de objetivos e configuração de treinos personalizados.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-workout"></use></svg></div>
+                    <h4 class="mb-1">2) Monitore</h4>
+                    <p style="color: var(--muted);">Dashboard em tempo real: acompanhamento de performance, aderência e evolução com KPIs automatizados.</p>
+                </div>
+                <div class="card">
+                    <div class="icon-badge"><svg class="icon"><use href="#icon-settings"></use></svg></div>
+                    <h4 class="mb-1">3) Escale</h4>
+                    <p style="color: var(--muted);">Automação completa: cobrança, comunicação e relatórios gerenciais para crescimento sustentável.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tecnologia Avançada -->
+        <section class="container section tech-section">
+            <h2 class="section-title mb-3">Tecnologia de Ponta</h2>
+            <p class="text-center mb-4" style="color: var(--muted); font-size: 1.1rem;">A câmera capta sua execução, a IA identifica pontos-chave do corpo e fornece correções imediatas, enquanto o educador físico personaliza e acompanha seu treino.</p>
+            <div class="grid grid-2">
+                <div class="card tech-feature">
+                    <div class="tech-icon">
+                        <div class="icon-wrapper">
+                            📹
+                        </div>
+                    </div>
+                    <h3 class="mb-2">Visão Computacional</h3>
+                    <ul class="feature-list">
+                        <li>Detecção de poses humanas em tempo real</li>
+                        <li>Análise biomecânica automatizada</li>
+                        <li>Processamento de vídeo via câmera do dispositivo</li>
+                        <li>Identificação de padrões incorretos de movimento</li>
+                    </ul>
+                </div>
+                <div class="card tech-feature">
+                    <div class="tech-icon">
+                        <div class="icon-wrapper">
+                            🤖
+                        </div>
+                    </div>
+                    <h3 class="mb-2">Inteligência Artificial</h3>
+                    <ul class="feature-list">
+                        <li>Machine learning para análise de movimento</li>
+                        <li>Algoritmos de feedback automático</li>
+                        <li>Alertas visuais e sonoros instantâneos</li>
+                        <li>Prevenção de lesões com 75% de precisão</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tech-flow mt-4">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <h4>Monitoramento</h4>
+                    <p>Câmera rastreia pontos-chave do corpo durante exercícios</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <h4>Análise</h4>
+                    <p>IA processa movimento e identifica desvios técnicos</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <h4>Correção</h4>
+                    <p>Feedback imediato para ajustes em tempo real</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios Visuais -->
+        <section class="container section">
+            <h2 class="section-title mb-3">Por que escolher o Mundo Ativo?</h2>
+            <div class="grid grid-2">
+                <div class="card visual-benefit">
+                    <div class="benefit-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2936/2936719.png" alt="Tecnologia" style="width: 64px; height: 64px;">
+                    </div>
+                    <h3 class="mb-2">Tecnologia Avançada</h3>
+                    <p style="color: var(--muted);">Visão computacional e IA para monitoramento em tempo real, garantindo execução correta e segurança máxima nos treinos.</p>
+                </div>
+                <div class="card visual-benefit">
+                    <div class="benefit-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1067/1067256.png" alt="Suporte" style="width: 64px; height: 64px;">
+                    </div>
+                    <h3 class="mb-2">Suporte Especializado</h3>
+                    <p style="color: var(--muted);">Equipe técnica especializada em educação física e tecnologia, pronta para ajudar você a crescer.</p>
+                </div>
+                <div class="card visual-benefit">
+                    <div class="benefit-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Segurança" style="width: 64px; height: 64px;">
+                    </div>
+                    <h3 class="mb-2">Prevenção de Lesões</h3>
+                    <p style="color: var(--muted);">Sistema inteligente detecta padrões de risco e desequilíbrios musculares, prevenindo lesões com precisão científica.</p>
+                </div>
+                <div class="card visual-benefit">
+                    <div class="benefit-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2936/2936760.png" alt="Crescimento" style="width: 64px; height: 64px;">
+                    </div>
+                    <h3 class="mb-2">Crescimento Sustentável</h3>
+                    <p style="color: var(--muted);">Ferramentas para escalar seu negócio de forma organizada e profissional, sem perder a qualidade.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FAQ -->
+        <section id="faq" class="container section">
+            <h2 class="mb-3">Perguntas frequentes</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <h4 class="mb-1">Quando será lançado?</h4>
+                    <p style="color: var(--muted);">Estamos em desenvolvimento ativo. Inscreva-se na lista para receber novidades.</p>
+                </div>
+                <div class="card">
+                    <h4 class="mb-1">Haverá app para alunos?</h4>
+                    <p style="color: var(--muted);">Sim, a experiência do aluno é prioridade desde o primeiro dia.</p>
+                </div>
+                <div class="card">
+                    <h4 class="mb-1">Posso migrar meus dados?</h4>
+                    <p style="color: var(--muted);">Teremos apoio de migração para facilitar sua transição.</p>
+                </div>
+                <div class="card">
+                    <h4 class="mb-1">Qual o investimento?</h4>
+                    <p style="color: var(--muted);">Planos acessíveis com período de teste gratuito. Entre em contato para conhecer as opções.</p>
+                </div>
+                <div class="card">
+                    <h4 class="mb-1">Funciona no celular?</h4>
+                    <p style="color: var(--muted);">Sim! Plataforma responsiva que funciona perfeitamente em todos os dispositivos.</p>
+                </div>
+                <div class="card">
+                    <h4 class="mb-1">Preciso de treinamento?</h4>
+                    <p style="color: var(--muted);">Interface intuitiva com tutoriais integrados. Suporte completo durante a implementação.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#inicio" class="footer-logo">
+                    <img src="Logo - MA 05.jpeg" alt="Mundo Ativo" style="height: 40px; width: auto;">
+                </a>
+                <p>Sistema completo de gestão para personal trainers</p>
+            </div>
+            <div class="footer-links">
+                <a href="#recursos" class="footer-link">Recursos</a>
+                <a href="#faq" class="footer-link">FAQ</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Mundo Ativo. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- (Containers removidos: modal/toast não usados nesta landing) -->
+
+    <!-- Scripts mínimos: toggle do menu mobile -->
+    <script>
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMobile = document.getElementById('navMobile');
+        
+        navToggle.addEventListener('click', () => {
+            navMobile.classList.toggle('active');
+        });
+        
+        // Smooth scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections and cards for reveal animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+            const cards = document.querySelectorAll('.card');
+            const techFeatures = document.querySelectorAll('.tech-feature');
+            
+            sections.forEach(section => {
+                section.classList.add('reveal');
+                observer.observe(section);
+            });
+            
+            cards.forEach((card, index) => {
+                if (index % 2 === 0) {
+                    card.classList.add('reveal-left');
+                } else {
+                    card.classList.add('reveal-right');
+                }
+                observer.observe(card);
+            });
+            
+            techFeatures.forEach(feature => {
+                feature.classList.add('reveal');
+                observer.observe(feature);
+            });
+        });
+        
+        // Enhanced floating icons interaction
+        document.querySelectorAll('.floating-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.transform = 'scale(1.3) rotate(15deg)';
+                icon.style.filter = 'drop-shadow(0 0 30px rgba(0,190,220,1))';
+            });
+            
+            icon.addEventListener('mouseleave', () => {
+                icon.style.transform = '';
+                icon.style.filter = '';
+            });
+        });
+    </script>
+</body>
+</html>
